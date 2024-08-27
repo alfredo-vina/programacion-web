@@ -4,9 +4,11 @@ var librosModel = require('./../../models/librosModel');
 
 router.get('/', async function(req, res, next) {
     var libros = await librosModel.getLibros();
+    var usuario = req.session.usuario;
     res.render('admin/libros', {
         layout: "admin/layout", 
-        libros
+        libros,
+        usuario
     });
 });
 

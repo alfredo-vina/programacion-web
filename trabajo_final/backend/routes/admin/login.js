@@ -36,9 +36,13 @@ router.post('/login', async (req, res, next) => {
 
 router.get('/logout', async (req, res, next) => {
     try {
-        req.session.id_usuario = undefined;
-        req.session.usuario = undefined;
-
+        //req.session.id_usuario = undefined;
+        //req.session.usuario = undefined;
+        //res.render('admin/login', {
+        //    layout: 'admin/layout'
+        //});
+        
+        req.session.destroy();
         res.redirect('/');
     }
     catch(error)
