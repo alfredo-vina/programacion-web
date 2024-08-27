@@ -1,0 +1,42 @@
+<div>
+    <center>
+
+    <form action="/login" method="post">
+        <table style="text-align: center; margin-top:50px;">
+            <tr>
+                <td style="vertical-align:middle;">
+                    <img src="./images/user.png" alt="usuarios" style="width:50px;vertical-align:middle;" />
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                Username:
+                            </td>
+                            <td>
+                                <input type="text" name="usuario" size="20" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Contrase&ntilde;a:
+                            </td>
+                            <td>
+                                <input type="password" name="password" size="20" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="right">
+                    <input class="login-button" type="submit" value="Aceptar" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    {{#if error}}
+    <p>Usuario y/o contrase&ntilde;a incorrecta</p>
+    {{/if}}
+    </center>
+</div>

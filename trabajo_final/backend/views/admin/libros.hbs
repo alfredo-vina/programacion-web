@@ -27,9 +27,8 @@ function showEliminarLibro(id) {
     });
 }
 
-function showEditarLibro(libro)
-{
-        Swal.fire({
+function showEditarLibro(libro) {
+    Swal.fire({
         title:"Modificar Libro",
         html:
         "<form action='/modificar' method='post'>" +
@@ -43,6 +42,10 @@ function showEditarLibro(libro)
         showConfirmButton:false
     });
 }
+
+function logout(){
+    window.location = "/logout";
+}
 </script>
     
 <div class="container" style="margin-top: 50px;">
@@ -52,7 +55,8 @@ function showEditarLibro(libro)
             <h3>Libros</h3>
         </div>
         <div class="p-2 bd-highlight">
-            <button type="button" value="Libros" class="btn btn-secondary" onclick="showInsertarLibro()"><i class="fas fa-plus"></i> Agregar</button>
+            <button type="button" class="btn btn-secondary" onclick="showInsertarLibro()"><i class="fas fa-plus"></i> Agregar</button>
+            <button type="button" class="btn btn-secondary" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesi&oacute;n</button>
         </div>
     </div>
 {{!-- fin libros 1 --}}
