@@ -1,0 +1,82 @@
+<script>
+function showInsertarLibro() {
+    Swal.fire({
+        title:"Agregar Libro",
+        html:
+        "<form action='/agregar' method='post'>" +
+        "<input name='titulo' class='swal2-input' placeholder='Titulo'/>" +
+        "<input name='subtitulo' class='swal2-input' placeholder='Sub Titulo'/>" +
+        "<input name='precio' class='swal2-input' placeholder='Precio'/><br/>" +
+        "<button type='submit' class='btn btn-primary'>Guardar</button>" +
+        "<button type='button' class='btn btn-primary' onclick='Swal.close()'>Cancelar</button>" +
+        "</form>" ,
+        showConfirmButton:false
+    });
+}
+
+function showEliminarLibro(id) {
+    Swal.fire({
+        title:"Desea eliminar el libro?",
+        html:
+        "<form action='/eliminar' method='post'>" +
+        "<input type='hidden' name='id' class='swal2-input' placeholder='Titulo' value='"+id+" '/>" +
+        "<button type='submit' class='btn btn-primary'>Si</button>" +
+        "<button type='button' class='btn btn-primary' onclick='Swal.close()'>No</button>" +
+        "</form>" ,
+        showConfirmButton:false
+    });
+}
+
+function showEditarLibro(libro)
+{
+        Swal.fire({
+        title:"Modificar Libro",
+        html:
+        "<form action='/modificar' method='post'>" +
+        "<input name='id' class='swal2-input' placeholder='Titulo' value='"+libro.id+"'/>" +
+        "<input name='titulo' class='swal2-input' placeholder='Titulo' value='"+libro.titulo+"'/>" +
+        "<input name='subtitulo' class='swal2-input' placeholder='Sub Titulo' value='"+libro.subtitulo+"'/>" +
+        "<input name='precio' class='swal2-input' placeholder='Precio' value='"+libro.precio+"'/><br/>" +
+        "<button type='submit' class='btn btn-primary'>Guardar</button>" +
+        "<button type='button' class='btn btn-primary' onclick='Swal.close()'>Cancelar</button>" +
+        "</form>" ,
+        showConfirmButton:false
+    });
+}
+</script>
+    
+<div class="container" style="margin-top: 50px;">
+{{!-- libros --}}
+    <div class="d-flex bd-highlight mb-3">
+        <div class="me-auto p-2 bd-highlight">
+            <h3>Libros</h3>
+        </div>
+        <div class="p-2 bd-highlight">
+            <button type="button" value="Libros" class="btn btn-secondary" onclick="showInsertarLibro()"><i class="fas fa-plus"></i> Agregar</button>
+        </div>
+    </div>
+{{!-- fin libros 1 --}}
+<div class="table-responsive">
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Sub titulo</th>
+            <th scope="col" colspan="2" style="text-align:center">Accion</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each libros}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{titulo}}</td>
+            <td>{{subtitulo}}</td>
+            <td style="text-align:center"><a href="#" onclick="showEditarLibro({'id':'{{id}}', 'titulo':'{{titulo}}', 'subtitulo':'{{subtitulo}}'})"><i class="fas fa-edit"></i></a></td>
+            <td style="text-align:center"><a href="#" onclick="showEliminarLibro({{id}})"><i class="far fa-trash-alt"></i></a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</div>
+</div>
