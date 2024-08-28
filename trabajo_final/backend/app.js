@@ -11,7 +11,8 @@ var fileUpload = require('express-fileupload');
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/admin/login');
 var librosRouter = require('./routes/admin/libros');
-
+var apiRouter = require('./routes/api');
+var cors = require('cors');
 var app = express();
 
 // view engine setup
@@ -29,7 +30,7 @@ app.use(session({
   cookie: {maxAge: null},
   resave:false,
   saveUninitialized: true
-}))
+}));
 
 secured = async (req, res, next) => {
   try {
@@ -54,7 +55,7 @@ app.use(fileUpload({
 app.use('/', indexRouter);
 app.use('/admin/login', loginRouter);
 app.use('/admin/libros', secured, librosRouter);
-//app.use('/eliminar', secured, librosRouter);
+app.use('/api', cors(), apiRouter);
 
 // catch 404 and forward to error handler
 /*
