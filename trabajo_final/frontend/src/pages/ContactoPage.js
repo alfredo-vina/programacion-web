@@ -2,36 +2,50 @@ import React, {useState} from "react";
 import axios from "axios";
 
 const ContactoPage = (props) => {
-   
-    const initialForm = {
-        nombre: "",
-        email:"",
-        telefono:"",
-        mensaje:""
-    }
 
     const [sending, setSending] = useState(false);
     const [msg, setMsg] = useState("");
-    const [formData, setFormData] = useState(initialForm);
+    
 
-    const handleChange = e => {
+    const [nombre, setNombre] = useState("");
+    const [email, setEmail] = useState("");
+    const [telefono, setTelefono] = useState("");
+    const [mensaje, setMensaje] = useState("");
+
+
+    const handleChangeNombre = e => {
         const {name, value} = e.target;
-        setFormData(oldData => ({
-            oldData,
-            [name]: value //forma dinamica
-        }));
+        setNombre(value);
+    }
+
+    const handleChangeEmail = e => {
+        const {name, value} = e.target;
+        setEmail(value);
+    }
+
+    const handleChangeTelefono = e => {
+        const {name, value} = e.target;
+        setTelefono(value);
+    }
+
+    const handleChangeMensaje = e => {
+        const {name, value} = e.target;
+        setMensaje(value);
     }
 
     const handleSubmit = async e => {
+        let formData = ({'nombre':nombre, 'email': email, 'telefono': telefono, 'mensaje': mensaje});
+
         e.preventDefault();
         setMsg('');
         setSending(true);
         const response = await axios.post('http://localhost:3000/api/contacto', formData);
         setSending(false);
         setMsg(response.data.mensaje);
-        if (response.data.console.error === false)
+
+        if (response.data.error === false)
         {
-            setFormData(initialForm);
+            //setFormData(initialForm);
         }
     }
     return <div class="content"><br/><form onSubmit={handleSubmit}>
@@ -42,7 +56,7 @@ const ContactoPage = (props) => {
                 <label>Nombre:</label>
             </td>
             <td>
-                <input type="text" name="nombre" value={formData.nombre} onChange={handleChange} />
+                <input type="text" name="nombre" value={nombre} onChange={handleChangeNombre} />
             </td>
         </tr>
         <tr>
@@ -50,7 +64,7 @@ const ContactoPage = (props) => {
                 <label>Email:</label>
             </td>
             <td>
-                <input type="text" name="email" value={formData.email} onChange={handleChange} />
+                <input type="text" name="email" value={email} onChange={handleChangeEmail} />
             </td>
         </tr>
         <tr>
@@ -58,7 +72,7 @@ const ContactoPage = (props) => {
                 <label>Tel&eacute;fono:</label>
             </td>
             <td>
-                <input type="text" name="telefono" value={formData.telefono} onChange={handleChange} />
+                <input type="text" name="telefono" value={telefono} onChange={handleChangeTelefono} />
             </td>
         </tr>
         <tr>
@@ -66,14 +80,14 @@ const ContactoPage = (props) => {
                 <label>Comentario:</label>
             </td>
             <td>
-                <textarea name="mensaje" value={formData.mensaje} onChange={handleChange} />
+                <textarea name="mensaje" value={mensaje} onChange={handleChangeMensaje} />
             </td>
         </tr>
         {sending ? <img src="imagenes/loading.svg" width="35" height="35"/>:null}
         {msg ? <p>{msg}</p>:null}
         <tr>
             <td colSpan={2} align="right">
-                <input type="submit" value="Enviar" onChange={handleChange} />
+                <input type="submit" value="Enviar" />
             </td>
         </tr>
         </table>

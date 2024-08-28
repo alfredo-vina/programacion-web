@@ -3,6 +3,8 @@ var router = express.Router();
 var librosModel = require("./../models/librosModel");
 var cloudinary = require('cloudinary').v2;
 
+const nodemailer = require('nodemailer');
+
 router.get('/libros', async function (req, res, next) {
     let libros = await librosModel.getLibros();
 
@@ -24,28 +26,36 @@ router.get('/libros', async function (req, res, next) {
 })
 
 router.post('/contacto', async (req, res) => {
+    console.log(JSON.stringify(req.body));
     const mail = {
         to: 'alfred@montevideo.com.uy',
         subject: 'Contacto',
         html: req.body.nombre + " se contacta y espera respuesta en " + req.body.email +
         "<br/>Mensaje: <br/>" + req.body.mensaje
     }
-})
-/*
-const transport = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: process.env.SMTP_PORT,
-    auth:{
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
-    }
-})
 
-await transport.sendMail(mail);
+    /*
+    SMTP_HOST=smtp.mailtrap.io 
+    SMPT_PORT=2525
+    SMTP_USER=ac453b812df9e6
+    SMTP_PASS=2901efe3f2
+    */
 
-res.status(201).json({
-    error:false, 
-    message: "Mensaje enviado"
-});*/
+    const transport = nodemailer.createTransport({
+        host: "sandbox.smtp.mailtrap.io", //process.env.SMTP_HOST,
+        port: "587", //process.env.SMTP_PORT,
+        auth:{
+            user: "8411743e2c822f", //process.env.SMTP_USER, 2037054
+            pass: "d092c2661d95e5", //process.env.SMTP_PASS
+        }
+    });
+
+    await transport.sendMail(mail);
+
+    res.status(201).json({
+        error:false, 
+        message: "Mensaje enviado"
+    });
+})
 
 module.exports = router;
