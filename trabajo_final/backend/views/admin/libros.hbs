@@ -3,9 +3,10 @@ function showInsertarLibro() {
     Swal.fire({
         title:"Agregar Libro",
         html:
-        "<form action='/agregar' method='post'>" +
+        "<form action='/admin/libros/agregar' method='post' enctype='multipart/form-data'>" +
         "<input name='titulo' class='swal2-input' placeholder='Titulo'/>" +
         "<input name='subtitulo' class='swal2-input' placeholder='Sub Titulo'/>" +
+        "<input type='file' name='imagen' id='imagen' />" +
         "<input name='precio' class='swal2-input' placeholder='Precio'/><br/>" +
         "<button type='submit' class='btn btn-primary'>Guardar</button>" +
         "<button type='button' class='btn btn-primary' onclick='Swal.close()'>Cancelar</button>" +
@@ -18,7 +19,7 @@ function showEliminarLibro(id) {
     Swal.fire({
         title:"Desea eliminar el libro?",
         html:
-        "<form action='/eliminar' method='post'>" +
+        "<form action='/admin/libros/eliminar' method='post'>" +
         "<input type='hidden' name='id' class='swal2-input' placeholder='Titulo' value='"+id+" '/>" +
         "<button type='submit' class='btn btn-primary'>Si</button>" +
         "<button type='button' class='btn btn-primary' onclick='Swal.close()'>No</button>" +
@@ -31,7 +32,7 @@ function showEditarLibro(libro) {
     Swal.fire({
         title:"Modificar Libro",
         html:
-        "<form action='/modificar' method='post'>" +
+        "<form action='/admin/libros/modificar' method='post'>" +
         "<input name='id' class='swal2-input' placeholder='Titulo' value='"+libro.id+"'/>" +
         "<input name='titulo' class='swal2-input' placeholder='Titulo' value='"+libro.titulo+"'/>" +
         "<input name='subtitulo' class='swal2-input' placeholder='Sub Titulo' value='"+libro.subtitulo+"'/>" +
@@ -44,7 +45,7 @@ function showEditarLibro(libro) {
 }
 
 function logout(){
-    window.location = "/logout";
+    window.location = "/admin/login/logout";
 }
 </script>
     
@@ -67,6 +68,7 @@ function logout(){
             <th scope="col">#</th>
             <th scope="col">Titulo</th>
             <th scope="col">Sub titulo</th>
+            <th scope="col">Imagen</th>
             <th scope="col" colspan="2" style="text-align:center">Accion</th>
         </tr>
     </thead>
@@ -76,6 +78,7 @@ function logout(){
             <td>{{id}}</td>
             <td>{{titulo}}</td>
             <td>{{subtitulo}}</td>
+            <td>{{{imagen}}}</td>
             <td style="text-align:center"><a href="#" onclick="showEditarLibro({'id':'{{id}}', 'titulo':'{{titulo}}', 'subtitulo':'{{subtitulo}}'})"><i class="fas fa-edit"></i></a></td>
             <td style="text-align:center"><a href="#" onclick="showEliminarLibro({{id}})"><i class="far fa-trash-alt"></i></a></td>
         </tr>

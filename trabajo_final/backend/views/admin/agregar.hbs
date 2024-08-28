@@ -1,7 +1,7 @@
-<div>
+<!--div>
     <div>
         <h4>Agregar un libro</h4>
-        <form action="/admin/agregar" method="post">
+        <form action="/admin/agregar" method="post" enctype="multipart/form-data">
             <table>
                 <thead>
                     <tr>
@@ -11,15 +11,21 @@
                         <th>
                             Sub Titulo
                         </th>
+                        <th>
+                            Imagen
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>
-                            <input type="text" placeholder="Sub titulo" name="subtitulo">
+                            <input type="text" placeholder="Sub titulo" name="subtitulo"/>
                         </td> 
                         <td>
-                            <input type="text" placeholder="Titulo" name="titulo">
+                            <input type="text" placeholder="Titulo" name="titulo" />
+                        </td>
+                        <td>
+                            <input type="file" name="imagen" id="imagen" />
                         </td>
                     </tr>
                 </tbody>
@@ -27,4 +33,4 @@
             <button type="submit">Guardar</button>
         </form>
     </div>
-</div>
+</div-->

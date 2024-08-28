@@ -2,11 +2,12 @@ var express = require('express');
 var router = express.Router();
 var usuariosModel = require('./../../models/usuariosModel');
 
+/*
 router.get('/', async function(req, res, next) {
     res.render('admin/login', {
         layout: "admin/layout"
     });
-});
+});*/
 
 router.post('/login', async (req, res, next) => {
     try{
@@ -19,7 +20,7 @@ router.post('/login', async (req, res, next) => {
             req.session.id_usuario = data.id;
             req.session.usuario = data.usuario;
 
-            res.redirect('admin/libros');
+            res.redirect('/admin/libros');
         }
         else {
             res.render('admin/login', {

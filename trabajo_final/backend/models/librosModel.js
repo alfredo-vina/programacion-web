@@ -25,8 +25,8 @@ async function insertLibro(libro) {
 
 async function updateLibro(libro) {
     try {
-        var query = "update libros set titulo = ?, subtitulo = ? where id = ? ";
-        var rows = await pool.query(query, [libro.titulo, libro.subtitulo, libro.id]);
+        var query = "update libros set titulo = ?, subtitulo = ?, precio = ?, imagen = ? where id = ? ";
+        var rows = await pool.query(query, [libro.titulo, libro.subtitulo, libro.precio, libro.imagen, libro.id]);
         return rows;
     }
     catch (error){

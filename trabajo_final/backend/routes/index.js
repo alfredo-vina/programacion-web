@@ -8,7 +8,9 @@ var router = express.Router();
 
 var router = express.Router();
 router.get("/", function(req, res, next){
-  res.redirect('./admin/login');
+  res.render('admin/login', {
+    layout: "admin/layout"
+});
 });
 
 module.exports = router;
