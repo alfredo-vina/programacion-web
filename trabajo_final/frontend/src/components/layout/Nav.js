@@ -8,7 +8,7 @@ const Nav = (props) => {
             <ul>
                 <li><NavLink to="/" style={({isActive}) => { return {fontWeight: isActive ? "bold" : ""}}}>Home</NavLink></li>
                 <li><NavLink to="/nosotros" style={({isActive}) => { return {fontWeight: isActive ? "bold" : ""}}}>Nosotros</NavLink></li>
-                <li><NavLink to="/novedades" style={({isActive}) => { return {fontWeight: isActive ? "bold" : ""}}}>Novedades</NavLink></li>
+                <li><NavLink to="/libros" style={({isActive}) => { return {fontWeight: isActive ? "bold" : ""}}}>Libros</NavLink></li>
                 <li><NavLink to="/contacto" style={({isActive}) => { return {fontWeight: isActive ? "bold" : ""}}}>Contacto</NavLink></li>
             </ul>
             
