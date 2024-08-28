@@ -31,7 +31,7 @@ router.post('/contacto', async (req, res) => {
         "<br/>Mensaje: <br/>" + req.body.mensaje
     }
 })
-
+/*
 const transport = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: process.env.SMTP_PORT,
@@ -39,13 +39,13 @@ const transport = nodemailer.createTransport({
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS
     }
-});
+})
 
 await transport.sendMail(mail);
 
 res.status(201).json({
     error:false, 
     message: "Mensaje enviado"
-});
+});*/
 
 module.exports = router;

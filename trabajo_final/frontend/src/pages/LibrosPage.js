@@ -5,6 +5,8 @@ import LibroItem from "../components/libros/Libros";
 
 
 const LibrosPage = (props) => {
+    //return <div>LibrosPage</div>
+
     const [loading, setLoading] = useState(false);
     const [libros, setLibros] = useState([]);
 
@@ -19,7 +21,6 @@ const LibrosPage = (props) => {
         cargarLibros();
 
     }, []);
-    //return 
     
     return (
         <section>
@@ -31,7 +32,7 @@ const LibrosPage = (props) => {
                 )
             }
         </section>
-    );
+    ); 
 }
 
 export default LibrosPage;
