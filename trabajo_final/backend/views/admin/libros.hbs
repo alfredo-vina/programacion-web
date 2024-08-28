@@ -6,8 +6,8 @@ function showInsertarLibro() {
         "<form action='/admin/libros/agregar' method='post' enctype='multipart/form-data'>" +
         "<input name='titulo' class='swal2-input' placeholder='Titulo'/>" +
         "<input name='subtitulo' class='swal2-input' placeholder='Sub Titulo'/>" +
-        "<input type='file' name='imagen' id='imagen' />" +
         "<input name='precio' class='swal2-input' placeholder='Precio'/><br/>" +
+        "<input type='file' name='imagen' id='imagen' />" +
         "<button type='submit' class='btn btn-primary'>Guardar</button>" +
         "<button type='button' class='btn btn-primary' onclick='Swal.close()'>Cancelar</button>" +
         "</form>" ,
@@ -32,11 +32,12 @@ function showEditarLibro(libro) {
     Swal.fire({
         title:"Modificar Libro",
         html:
-        "<form action='/admin/libros/modificar' method='post'>" +
+        "<form action='/admin/libros/modificar' method='post' enctype='multipart/form-data'>" +
         "<input name='id' class='swal2-input' placeholder='Titulo' value='"+libro.id+"'/>" +
         "<input name='titulo' class='swal2-input' placeholder='Titulo' value='"+libro.titulo+"'/>" +
         "<input name='subtitulo' class='swal2-input' placeholder='Sub Titulo' value='"+libro.subtitulo+"'/>" +
         "<input name='precio' class='swal2-input' placeholder='Precio' value='"+libro.precio+"'/><br/>" +
+        "<input type='file' name='imagen' id='imagen' />" +
         "<button type='submit' class='btn btn-primary'>Guardar</button>" +
         "<button type='button' class='btn btn-primary' onclick='Swal.close()'>Cancelar</button>" +
         "</form>" ,
@@ -66,9 +67,10 @@ function logout(){
     <thead>
         <tr>
             <th scope="col">#</th>
+            <th scope="col">Imagen</th>
             <th scope="col">Titulo</th>
             <th scope="col">Sub titulo</th>
-            <th scope="col">Imagen</th>
+            <th scope="col">Precio</th>
             <th scope="col" colspan="2" style="text-align:center">Accion</th>
         </tr>
     </thead>
@@ -76,10 +78,11 @@ function logout(){
         {{#each libros}}
         <tr>
             <td>{{id}}</td>
+            <td>{{{imagen}}}</td>
             <td>{{titulo}}</td>
             <td>{{subtitulo}}</td>
-            <td>{{{imagen}}}</td>
-            <td style="text-align:center"><a href="#" onclick="showEditarLibro({'id':'{{id}}', 'titulo':'{{titulo}}', 'subtitulo':'{{subtitulo}}'})"><i class="fas fa-edit"></i></a></td>
+            <td>{{precio}}</td>
+            <td style="text-align:center"><a href="#" onclick="showEditarLibro({'id':'{{id}}', 'titulo':'{{titulo}}', 'subtitulo':'{{subtitulo}}', 'precio':'{{precio}}'})"><i class="fas fa-edit"></i></a></td>
             <td style="text-align:center"><a href="#" onclick="showEliminarLibro({{id}})"><i class="far fa-trash-alt"></i></a></td>
         </tr>
         {{/each}}

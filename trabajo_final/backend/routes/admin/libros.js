@@ -21,7 +21,7 @@ router.get('/', async function(req, res, next) {
 
     libros = libros.map(libro => {
         if (libro.imagen){
-            const imagen = cloudinary.image(libro.image, {
+            const imagen = cloudinary.image(libro.imagen, {
                 width:100,
                 height:120,
                 crop:'fill'
@@ -71,19 +71,30 @@ router.post('/agregar', async function(req, res, next) {
 });
 
 router.post('/modificar', async function(req, res, next) {
-    const id = req.body.id;
-    const titulo = req.body.titulo;
-    const subtitulo = req.body.subtitulo;
-    const precio = req.body.precio;
+    try {
+        var imageId = '';
+        if (req.files && Object.keys(req.files).length > 0){
+            var imagen = req.files.imagen;
+            imageId = (await uploader(imagen.tempFilePath)).public_id;
+        }
+        const id = req.body.id;
+        const titulo = req.body.titulo;
+        const subtitulo = req.body.subtitulo;
+        const precio = req.body.precio;
 
-    var libros = await librosModel.updateLibro({
-        'id':id,
-        'titulo':titulo,
-        'subtitulo':subtitulo,
-        'precio':precio
-    });
+        var libros = await librosModel.updateLibro({
+            'id':id,
+            'titulo':titulo,
+            'subtitulo':subtitulo,
+            'precio':precio,
+            'imagen':imageId
+        });
 
-    res.redirect('/admin/libros');
+        res.redirect('/admin/libros');
+    }
+    catch(error) {
+        console.log(error);
+    }
 });
 
 router.post('/eliminar', async function(req, res, next) {
