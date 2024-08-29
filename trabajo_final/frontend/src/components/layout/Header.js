@@ -7,7 +7,7 @@ const Header = (props) => {
                 <img className="logo" src="./libros.svg" width={100} height={100}/>
                 <div className="titulo">
 
-                <h1>Trabajo Final</h1>
+                <h1>Trabajo Pr&aacute;ctico Final - Frontend</h1>
                 <h2>Diplomatura en programaci&oacute;n web full stack con React JS</h2>
                 </div>
             </div>
